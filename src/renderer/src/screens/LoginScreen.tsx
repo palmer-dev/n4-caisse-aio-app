@@ -1,10 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useLoginMutation } from '@services/auth/authExtendedApi'
-import Button from '@components/Button/Button'
+import { useLoginMutation } from '@services/auth/authExtendedApi.ts'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout, selectAuth, setLogin } from '@services/auth/authSlice'
+import { logout, selectAuth, setLogin } from '@services/auth/authSlice.ts'
 import { Navigate } from 'react-router'
+import Button from '@components/Button/Button.tsx'
 
 type Inputs = {
   token: string

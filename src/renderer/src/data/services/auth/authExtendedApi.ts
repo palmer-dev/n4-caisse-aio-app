@@ -1,8 +1,8 @@
 // Need to use the React-specific entry point to import createApi
-import { api } from '../api/apiSlice'
-import { IAuthResponse } from '@services/api/types'
-import { MUser } from '@models/User/MUser'
-import { IUser } from '@services/users/types'
+import { api } from '../api/apiSlice.ts'
+import { IAuthResponse } from '@services/api/types.ts'
+import { MUser } from '@models/User/MUser.ts'
+import { IUser } from '@services/users/types.ts'
 
 export interface AuthResponse {
   user: MUser

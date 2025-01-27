@@ -1,6 +1,6 @@
 import { ReactNode, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { close, selectModal } from '@services/modal/modalSlice'
+import { close, selectModal } from '@services/modal/modalSlice.ts'
 
 interface ModalProps {
   children: ReactNode

@@ -1,6 +1,6 @@
-import { IShop } from '@services/shops/types'
-import { Model } from '@models/Model'
-import { IEmployee } from '@services/employees/types'
+import { IShop } from '@services/shops/types.ts'
+import { Model } from '@models/Model.ts'
+import { IEmployee } from '@services/employees/types.ts'
 
 export class MEmployee extends Model implements IEmployee {
   firstname: string

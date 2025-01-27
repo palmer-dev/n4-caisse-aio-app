@@ -5,7 +5,7 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError
 } from '@reduxjs/toolkit/query/react'
-import { RootState } from '@stores/store'
+import { RootState } from '@stores/store.ts'
 
 // Define a base query with proper typing
 const baseApi: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = fetchBaseQuery({

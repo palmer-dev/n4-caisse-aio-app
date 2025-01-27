@@ -1,5 +1,5 @@
-import { IModel } from '@models/Model'
-import { IShop } from '@services/shops/types'
+import { IModel } from '@models/Model.ts'
+import { IShop } from '@services/shops/types.ts'
 
 export interface IEmployee extends IModel {
   firstname: string

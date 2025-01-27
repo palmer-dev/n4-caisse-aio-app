@@ -1,9 +1,9 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-import { IAuthState } from '@services/auth/types'
-import { RootState } from '@stores/store'
-import { MUser } from '@models/User/MUser'
-import { AuthResponse } from '@services/auth/authExtendedApi'
+import { IAuthState } from '@services/auth/types.ts'
+import { RootState } from '@stores/store.ts'
+import { MUser } from '@models/User/MUser.ts'
+import { AuthResponse } from '@services/auth/authExtendedApi.ts'
 
 // Define the initial state using that type
 const initialState: IAuthState = {

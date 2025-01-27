@@ -1,7 +1,7 @@
-import { api } from '../api/apiSlice'
-import { MRole } from '@models/Role/MRole'
-import { IResponse } from '@services/api/types'
-import { IRole } from '@services/roles/types'
+import { api } from '../api/apiSlice.ts'
+import { MRole } from '@models/Role/MRole.ts'
+import { IResponse } from '@services/api/types.ts'
+import { IRole } from '@services/roles/types.ts'
 
 export const roleExtendedApi = api.injectEndpoints({
   endpoints: (builder) => ({

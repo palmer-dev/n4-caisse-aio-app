@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import authSlice from '@services/auth/authSlice'
-import { api } from '@services/api/apiSlice'
-import modalSlice from '@services/modal/modalSlice'
+import authSlice from '@services/auth/authSlice.ts'
+import { api } from '@services/api/apiSlice.ts'
+import modalSlice from '@services/modal/modalSlice.ts'
 
 const rootReducer = combineReducers({
   modal: modalSlice,
@@ -12,7 +12,8 @@ const rootReducer = combineReducers({
 const preloadedState = {
   auth: {
     user: null,
-    token: window.api.store.get('aio_api_key') ?? null
+    token: window.api.store.get('aio_api_key') ?? null,
+    employee: null
   }
 }
 

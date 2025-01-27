@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from '@stores/store'
-import { ModalType } from '@services/modal/types'
+import { RootState } from '@stores/store.ts'
+import { ModalType } from '@services/modal/types.ts'
 
 // Define the initial state using that type
 const initialState: ModalType = {

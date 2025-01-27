@@ -1,6 +1,6 @@
-import { Model } from '@models/Model'
-import { IUser } from '@services/users/types'
-import { HasLabel, Label } from '@renderer/types/Labelisable'
+import { Model } from '@models/Model.ts'
+import { IUser } from '@services/users/types.ts'
+import { HasLabel, Label } from '@renderer/types/Labelisable.ts'
 
 export class MUser extends Model implements HasLabel<string>, IUser {
   email: string

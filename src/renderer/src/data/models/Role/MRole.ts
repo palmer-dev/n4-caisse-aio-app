@@ -1,6 +1,6 @@
 // Extending ClassFieldProperties to include nested access properties
-import { Model } from '@models/Model'
-import { IRole } from '@services/roles/types'
+import { Model } from '@models/Model.ts'
+import { IRole } from '@services/roles/types.ts'
 
 export class MRole extends Model {
   // PROPERTIES

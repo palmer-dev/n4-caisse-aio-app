@@ -1,4 +1,4 @@
-import WindowTitle from '@components/WindowTitle'
+import WindowTitle from '@components/WindowTitle.tsx'
 
 const HomeScreen = (): JSX.Element => {
   return (

@@ -1,4 +1,4 @@
-import { IModel } from '@models/Model'
+import { IModel } from '@models/Model.ts'
 
 export interface IUser extends IModel {
   email: string

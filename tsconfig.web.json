@@ -10,9 +10,10 @@
     "composite": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "module": "esnext",
-    "target": "esnext",
-    "moduleResolution": "node",
+    "module": "Node16",
+    "moduleResolution": "node16",
+    "target": "ESNext",
+    "allowImportingTsExtensions": true,
     "paths": {
       "@renderer/*": [
         "src/renderer/src/*"

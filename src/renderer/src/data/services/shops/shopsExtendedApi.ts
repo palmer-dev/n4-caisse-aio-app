@@ -1,7 +1,7 @@
-import { api } from '../api/apiSlice'
-import { MShop } from '@models/Shop/MShop'
-import { IResponse } from '@services/api/types'
-import { IShop } from '@services/shops/types'
+import { api } from '../api/apiSlice.ts'
+import { MShop } from '@models/Shop/MShop.ts'
+import { IResponse } from '@services/api/types.ts'
+import { IShop } from '@services/shops/types.ts'
 
 export const shopsExtendedApi = api.injectEndpoints({
   endpoints: (builder) => ({

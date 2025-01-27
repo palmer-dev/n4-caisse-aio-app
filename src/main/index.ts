@@ -2,7 +2,6 @@ import { app, BrowserWindow, ipcMain, safeStorage, shell } from 'electron'
 import { join } from 'path'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-
 import Store from 'electron-store'
 
 function createWindow(): void {
@@ -89,7 +88,7 @@ ipcMain.on('electron-store-get', (event, key) => {
 
     if (encryptedValue && isSafeStorageAvailable) {
       // Déchiffrement de la valeur si elle existe
-      event.returnValue = safeStorage.decryptString(Buffer.from(encryptedValue))
+      event.returnValue = safeStorage.decryptString(Buffer.from(encryptedValue as string))
     } else {
       event.returnValue = encryptedValue || undefined
     }
@@ -99,7 +98,7 @@ ipcMain.on('electron-store-get', (event, key) => {
   }
 })
 
-ipcMain.on('electron-store-set', (event, key, val) => {
+ipcMain.on('electron-store-set', (_event, key, val) => {
   try {
     if (isSafeStorageAvailable) {
       // Chiffrement de la valeur avant de la stocker
@@ -113,7 +112,7 @@ ipcMain.on('electron-store-set', (event, key, val) => {
   }
 })
 
-ipcMain.on('electron-store-delete', (event, key) => {
+ipcMain.on('electron-store-delete', (_event, key) => {
   try {
     store.delete(key)
   } catch (error) {

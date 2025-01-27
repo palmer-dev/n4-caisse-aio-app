@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   main: {
-    plugins: [swcPlugin()]
+    plugins: [externalizeDepsPlugin(), swcPlugin()]
   },
   preload: {
     plugins: [externalizeDepsPlugin()]

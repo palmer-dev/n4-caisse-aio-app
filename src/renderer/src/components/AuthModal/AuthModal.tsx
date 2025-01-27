@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { close, selectModal } from '@services/modal/modalSlice'
-import Numpad from '@components/Numpad/Numpad'
-import Button from '@components/Button/Button'
-import { useAuthEmployeeMutation } from '@services/auth/authExtendedApi'
+import { close, selectModal } from '@services/modal/modalSlice.ts'
+import Numpad from '@components/Numpad/Numpad.tsx'
+import Button from '@components/Button/Button.tsx'
+import { useAuthEmployeeMutation } from '@services/auth/authExtendedApi.ts'
 
 const AuthModal = (): JSX.Element => {
   const [employeeId, setEmployeeId] = useState<string>('')

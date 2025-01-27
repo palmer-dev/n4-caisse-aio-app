@@ -1,6 +1,6 @@
 // Define a type for the slice state
 
-import { MUser } from '@models/User/MUser'
+import { MUser } from '@models/User/MUser.ts'
 
 export interface IAuthState {
   user: MUser | null

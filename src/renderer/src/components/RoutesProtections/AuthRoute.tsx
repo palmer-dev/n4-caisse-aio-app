@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAuth } from '@services/auth/authSlice'
+import { selectAuth } from '@services/auth/authSlice.ts'
 import { useEffect } from 'react'
-import { open } from '@services/modal/modalSlice'
-import AuthModal from '@components/AuthModal/AuthModal'
+import { open } from '@services/modal/modalSlice.ts'
+import AuthModal from '@components/AuthModal/AuthModal.tsx'
 
 function AuthRoute(): JSX.Element {
   const dispatch = useDispatch()
