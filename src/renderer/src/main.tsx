@@ -4,7 +4,7 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { store } from '@stores/store.ts'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { HashRouter, Route, Routes } from 'react-router'
 import HomeScreen from '@renderer/screens/HomeScreen.tsx'
 import LayoutLoader from '@components/LayoutLoader/LayoutLoader.tsx'
 import AuthRoute from '@components/RoutesProtections/AuthRoute.tsx'
@@ -13,7 +13,7 @@ import LoginScreen from '@renderer/screens/LoginScreen.tsx'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route index element={<LoginScreen />} />
           <Route
@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path={'/dashboard'} element={<HomeScreen />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </React.StrictMode>
 )

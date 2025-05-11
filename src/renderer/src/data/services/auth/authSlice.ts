@@ -21,23 +21,36 @@ export const authSlice = createSlice({
       return state
     },
     logout: (state) => {
-      state = initialState
+      if (state.employee) {
+        state.employee = initialState.employee
+      } else {
+        state = initialState
+        window.api.store.delete('aio_api_key')
+      }
       // Clear data
-      window.api.store.delete('aio_api_key')
       return state
     },
     setLogin: (state, action: PayloadAction<AuthResponse>) => {
       state.user = action.payload.user
       state.token = action.payload.token
       return state
+    },
+    setToken: (state, action: PayloadAction<string>) => {
+      state.token = action.payload
+      return state
+    },
+    setEmployee: (state, action: PayloadAction<MUser>) => {
+      state.employee = action.payload
+      return state
     }
   }
 })
 
-export const { logout, setUser, setLogin } = authSlice.actions
+export const { setToken, logout, setUser, setLogin, setEmployee } = authSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState): MUser | null => state.auth?.user ?? null
 export const selectAuth = (state: RootState): IAuthState => state.auth
+export const selectEmployee = (state: RootState): MUser | null => state.auth?.employee ?? null
 
 export default authSlice.reducer

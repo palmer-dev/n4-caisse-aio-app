@@ -16,6 +16,9 @@ const baseApi: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = f
     if (!headers.has('Authorization') && token) {
       headers.set('Authorization', `Bearer ${token}`)
     }
+
+    headers.set('Content-Type', 'application/json')
+    headers.set('Accept', 'application/json')
     return headers
   }
 })
@@ -23,6 +26,6 @@ const baseApi: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = f
 // Define a service using a base query and expected endpoints
 export const api = createApi({
   baseQuery: baseApi,
-  tagTypes: ['User', 'Shop', 'Role'],
+  tagTypes: ['User', 'Shop', 'Role', 'Sale', 'Product', 'Sku', 'Client'],
   endpoints: () => ({})
 })

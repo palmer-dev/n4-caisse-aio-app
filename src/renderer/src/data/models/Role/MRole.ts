@@ -13,6 +13,6 @@ export class MRole extends Model {
   }
 
   get forLabel(): { label: string; value: string } {
-    return { label: this.name!, value: this._id! }
+    return { label: this.name!, value: this.id! }
   }
 }

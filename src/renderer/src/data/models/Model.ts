@@ -1,5 +1,5 @@
 export type IModel = {
-  _id: string | null
+  id: string | null
   updated_at: Date | null
   created_at: Date | null
 }
@@ -11,17 +11,17 @@ type NestedAssocLabel<T> = {
 
 export abstract class Model implements IModel {
   // PROPERTIES
-  _id: string | null
+  id: string | null
   updated_at: Date | null
   created_at: Date | null
   private assocLabel: NestedAssocLabel<this> = {}
 
   protected constructor(params: IModel) {
-    const { _id, created_at, updated_at } = params
-    this._id = _id ?? null
+    const { id, created_at, updated_at } = params
+    this.id = id ?? null
     this.updated_at = updated_at ? new Date(updated_at) : null
     this.created_at = created_at ? new Date(created_at) : null
-    this.assocLabel._id = 'ID'
+    this.assocLabel.id = 'ID'
     this.assocLabel.updated_at = 'Mise à jour'
     this.assocLabel.created_at = 'Créé'
   }

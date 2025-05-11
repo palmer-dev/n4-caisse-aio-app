@@ -2,10 +2,14 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import authSlice from '@services/auth/authSlice.ts'
 import { api } from '@services/api/apiSlice.ts'
 import modalSlice from '@services/modal/modalSlice.ts'
+import cartSlice from '@services/carts/cartSlice.ts'
+import saleSlice from '@services/sales/saleSlice.ts'
 
 const rootReducer = combineReducers({
   modal: modalSlice,
   auth: authSlice,
+  cart: cartSlice,
+  sale: saleSlice,
   api: api.reducer
 })
 

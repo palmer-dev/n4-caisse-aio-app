@@ -6,15 +6,15 @@ import { IShop } from '@services/shops/types.ts'
 export const shopsExtendedApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getShops: builder.query<MShop[], void>({
-      query: () => '/api/shops',
+      query: () => '/shops',
       providesTags: (result = []) => [
         'Shop',
-        ...result.map(({ _id }) => ({ type: 'Shop' as const, id: _id! }))
+        ...result.map(({ id }) => ({ type: 'Shop' as const, id: id! }))
       ],
       transformResponse: (response: IResponse<IShop[]>) => response.data.map((c) => new MShop(c))
     }),
     getShop: builder.query<MShop, string>({
-      query: (id) => `/api/shops/${id}`,
+      query: (id) => `/shops/${id}`,
       providesTags: (_, _1, arg) => [{ type: 'Shop', id: arg }],
       transformResponse: (response: IResponse<IShop>) => new MShop(response.data)
     })

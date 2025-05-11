@@ -4,4 +4,5 @@ export interface IUser extends IModel {
   email: string
   firstname: string
   lastname: string
+  shop_id: string
 }

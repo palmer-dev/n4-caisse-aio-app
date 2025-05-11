@@ -1,10 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useLoginMutation } from '@services/auth/authExtendedApi.ts'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { logout, selectAuth, setLogin } from '@services/auth/authSlice.ts'
+import { selectAuth } from '@services/auth/authSlice.ts'
 import { Navigate } from 'react-router'
 import Button from '@components/Button/Button.tsx'
+import { useAppDispatch, useAppSelector } from '@stores/hook.js'
+import { logoutApp, userLogin } from '@services/auth/thunks.js'
 
 type Inputs = {
   token: string
@@ -20,20 +21,20 @@ export default function LoginScreen(): JSX.Element {
   } = useForm<Inputs>()
 
   const [login, { isLoading }] = useLoginMutation()
-  const dispatch = useDispatch()
-  const auth = useSelector(selectAuth)
+  const dispatch = useAppDispatch()
+  const auth = useAppSelector(selectAuth)
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     void tryLogin(data.token)
   }
 
-  const tryLogin = async (token): Promise<void> => {
+  const tryLogin = async (token: string): Promise<void> => {
     return login({ token: token }).then((result) => {
       if ('data' in result && result.data) {
-        dispatch(setLogin(result.data))
+        dispatch(userLogin(result.data))
         window.api.store.set('aio_api_key', result.data.token)
       } else {
-        dispatch(logout())
+        dispatch(logoutApp)
         setError('token', { message: 'Invalid token' })
       }
 
