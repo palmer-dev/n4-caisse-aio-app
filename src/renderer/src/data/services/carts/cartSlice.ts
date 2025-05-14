@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '@stores/store.ts'
-import { ICart, ICartState } from '@services/carts/types.js'
+import { ICartState } from '@services/carts/types.js'
 import { MSku } from '@models/Sku/MSku.js'
-import { MCartItem } from '@models/Cart/MCart.js'
+import { MCart, MCartItem } from '@models/Cart/MCart.js'
 import { PaymentMethod } from '@components/ProductList/types.js'
 
 // Define the initial state using that type
@@ -19,11 +19,19 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    clearCart: (state) => {
+      state = {
+        ...initialState,
+        shop_id: state.shop_id,
+        employee_id: state.employee_id
+      }
+      return state
+    },
     setDiscount: (state, action: PayloadAction<number>) => {
       state.discount = action.payload
       return state
     },
-    setSkus: (state, action: PayloadAction<ICart['skus']>) => {
+    setSkus: (state, action: PayloadAction<MCart['skus']>) => {
       state.skus = action.payload
     },
     addSku: (state, action: PayloadAction<MSku>) => {
@@ -45,7 +53,10 @@ export const cartSlice = createSlice({
           sku: action.payload.sku,
           quantity: 1,
           unit_price: action.payload.unit_amount,
-          unit_price_with_tax: action.payload.unit_amount_with_tax
+          unit_price_with_tax: action.payload.unit_amount_with_tax,
+          has_discount: action.payload.has_discount,
+          final_price: action.payload.final_price,
+          discounts: action.payload.discounts
         })
         state.skus.push(newCartItem)
       }
@@ -95,30 +106,16 @@ export const {
   setCashier,
   setCartShop,
   setClient,
-  setPaymentMethod
+  setPaymentMethod,
+  clearCart
 } = cartSlice.actions
 
-// Other code such as selectors can use the imported `RootState` type
+// Other code, such as selectors, can use the imported `RootState` type
 export const selectCart = (state: RootState): ICartState => state.cart
 export const selectDiscount = (state: RootState): number => state.cart.discount ?? 0
 export const selectProducts = (state: RootState): MCartItem[] => state.cart.skus ?? []
 export const selectEmployee = (state: RootState): string | undefined => state.cart.employee_id
 export const selectClient = (state: RootState): string | undefined => state.cart.client_id
 export const selectShop = (state: RootState): string | undefined => state.cart.shop_id
-
-// Total price selector
-export const selectCartTotal = (state: RootState): number => {
-  const skus = state.cart.skus ?? []
-  const discount = state.cart.discount ?? 0
-
-  const subtotal = skus.reduce((total, sku) => {
-    const price = sku.unit_price ?? 0
-    const quantity = sku.quantity ?? 1
-    return total + price * quantity
-  }, 0)
-
-  const total = subtotal - discount
-  return total >= 0 ? total : 0
-}
 
 export default cartSlice.reducer

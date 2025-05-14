@@ -19,11 +19,15 @@ export const saleSlice = createSlice({
     },
     setSale: (state, action: PayloadAction<ISale>) => {
       state.sale = new MSale(action.payload)
+    },
+    clearSale: (state) => {
+      state = initialState
+      return state
     }
   }
 })
 
-export const { setSaleId, setSale } = saleSlice.actions
+export const { setSaleId, setSale, clearSale } = saleSlice.actions
 
 export const selectSale = (state: RootState): MSale | null => state.sale.sale
 export const selectSaleId = (state: RootState): string | null => state.sale.sale_id

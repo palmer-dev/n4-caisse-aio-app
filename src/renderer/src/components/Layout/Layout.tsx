@@ -25,7 +25,7 @@ interface LayoutComponent extends FC<LayoutProps> {
 
 // Définir la fonction Layout
 const LayoutBase: FC<LayoutProps> = ({ children }) => {
-  return <div className="flex w-full h-full">{children}</div>
+  return <div className="flex w-full flex-1 content">{children}</div>
 }
 
 // Attacher les sous-composants

@@ -19,7 +19,7 @@ function Menu(): JSX.Element {
   }, [dispatch, employee])
 
   return (
-    <div className="flex justify-between items-center z-20 w-full px-2 py-3 shadow bg-gray-400/10 bg-clip-padding backdrop-filter backdrop-blur-xs border-b border-gray-100">
+    <div className="menu flex justify-between items-center z-20 w-full px-2 py-3 shadow bg-gray-400/10 bg-clip-padding backdrop-filter backdrop-blur-xs border-b border-gray-100">
       <Button onClick={logoutUser}>
         Logout &nbsp;
         <IoLogOutOutline className="text-2xl" />

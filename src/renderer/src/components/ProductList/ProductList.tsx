@@ -81,15 +81,17 @@ const ProductList: FC = () => {
       {isLoading && <p>🔄 Recherche du produit...</p>}
       {isError && <p className="text-red-500">❌ {errorMessage}</p>}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 flex-1">
-        {products.map((product) => (
-          <CartItem cartItem={product} key={product.sku} />
-        ))}
+      <div className="flex-1 overflow-scroll h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 flex-1">
+          {products.map((product) => (
+            <CartItem cartItem={product} key={product.sku} />
+          ))}
+        </div>
       </div>
 
       <div className="grid gap-2 mt-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-        <QuickAction onClick={() => handlePayment(PaymentMethod.CARD)}>Payment CB</QuickAction>
-        <QuickAction onClick={() => handlePayment(PaymentMethod.CASH)}>Payment Cash</QuickAction>
+        <QuickAction onClick={() => handlePayment(PaymentMethod.CARD)}>CB</QuickAction>
+        <QuickAction onClick={() => handlePayment(PaymentMethod.CASH)}>Cash</QuickAction>
       </div>
     </div>
   )

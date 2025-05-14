@@ -9,7 +9,9 @@ const QuickAction: FC<QuickActionProperties> = ({ children, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={'bg-red-600/10 aspect-square p-2 flex justify-center items-center'}
+      className={
+        'dark:text-white  dark:bg-yellow-500/40 bg-yellow-500/60 aspect-square p-2 flex justify-center items-center text-2xl font-bold uppercase'
+      }
     >
       {children}
     </button>

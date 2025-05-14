@@ -1,17 +1,21 @@
-import { app, BrowserWindow, ipcMain, safeStorage, shell } from 'electron'
+import { app, BrowserWindow, ipcMain, nativeImage, safeStorage, shell } from 'electron'
 import { join } from 'path'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import Store from 'electron-store'
+
+const appIcon = nativeImage.createFromPath('../../resources/icon.png')
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
-    show: false,
+    show: true,
+    fullscreen: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
+    icon: appIcon,
     webPreferences: {
       preload: join(__dirname, '../preload/index.mjs'),
       nodeIntegration: false,

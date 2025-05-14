@@ -33,10 +33,17 @@ code {
 }
 
 #root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 70px  calc(100% - 70px);
+  grid-template-areas: 'menu' 'content';
+}
+
+#root .content {
+  grid-area: content;
+}
+
+#root .menu {
+  grid-area: menu;
 }
 
 .logo {
@@ -174,4 +181,8 @@ code {
   .actions {
     display: none;
   }
+}
+
+p {
+  @apply dark:text-gray-300;
 }

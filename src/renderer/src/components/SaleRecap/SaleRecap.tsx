@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react'
 import { selectProducts } from '@services/carts/cartSlice.js'
 import { useAppSelector } from '@stores/hook.js'
-import { CurrencyFormatter } from '@renderer/lib/CurrencuFormatter.js'
+import { CurrencyFormatter } from '@renderer/lib/CurrencyFormatter.js'
 import TotalRows from './TotalRows.tsx'
 import { MCartItem } from '@renderer/data/models/Cart/MCart.ts'
 
@@ -34,12 +34,28 @@ const SaleRecap: FC = () => {
                   key={p.sku}
                   className={'bg-red-50/20 odd:bg-white even:bg-gray-200'}
                 >
-                  <td className={'px-4 py-2 border-b'}>{p.name}</td>
+                  <td className={'px-4 py-2 border-b'}>
+                    {p.name}
+                    <br />
+                    {p.discounts.map((discount) => (
+                      <i className={'text-[12px]'} key={discount.name}>
+                        {discount.label}
+                      </i>
+                    ))}
+                  </td>
                   <td className={'px-4 py-2 border-b text-center'} align={'center'}>
                     {p.quantity}
                   </td>
                   <td className={'px-4 py-2 border-b text-right'} align={'right'}>
-                    {new CurrencyFormatter().format(p.unit_price_with_tax)}
+                    {new CurrencyFormatter().format(p.final_price)}
+                    {p.has_discount && (
+                      <>
+                        <br />
+                        <s className={'text-[12px]'}>
+                          {new CurrencyFormatter().format(p.unit_price_with_tax)}
+                        </s>
+                      </>
+                    )}
                   </td>
                 </tr>
               ))}

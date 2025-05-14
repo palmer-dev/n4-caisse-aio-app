@@ -15,11 +15,16 @@ export interface ISale extends IModel {
   created_at: Date
 }
 
+export type TaxBreakdown = {
+  [rate: string]: number // ou `${number}` si tu veux forcer des pourcentages
+}
+
 export interface ISimulation {
   subtotal: number
   tax: number
   grand_total: number
-  tax_breakdown: [key: string, value: number][]
+  tax_breakdown: TaxBreakdown
+  discount: number
 }
 
 export interface IAddSale extends ICartState {

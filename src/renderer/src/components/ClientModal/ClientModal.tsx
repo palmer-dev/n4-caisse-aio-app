@@ -12,7 +12,8 @@ import { useAppDispatch, useAppSelector } from '@stores/hook.js'
 import { selectCart, setClient } from '@services/carts/cartSlice.js'
 import { useAddSaleMutation } from '@services/sales/salesExtendedApi.js'
 import { setSaleId } from '@services/sales/saleSlice.js'
-import { open } from '@services/modal/modalSlice.js'
+import { close, open } from '@services/modal/modalSlice.js'
+import SecondaryButton from '@components/Button/SecondaryButton.js'
 
 type Inputs = {
   code: string
@@ -22,7 +23,7 @@ type Inputs = {
 }
 
 const ClientModal: FC = () => {
-  const [saveSale] = useAddSaleMutation()
+  const [saveSale, { isLoading: isSaveLoading, isError: isSaveError }] = useAddSaleMutation()
   const dispatch = useAppDispatch()
   const cart = useAppSelector(selectCart)
   const [search, { data: searchedClients, isLoading: loadSearch, reset: resetSearch }] =
@@ -75,18 +76,34 @@ const ClientModal: FC = () => {
     [cart.client_id]
   )
 
-  const handlePayment = async (): Promise<void> => {
+  const handlePayment = useCallback(async (): Promise<void> => {
     const { data: newSale } = await saveSale(cart)
 
     if (newSale && newSale.id) {
       dispatch(setSaleId(newSale.id))
       dispatch(open(ModalIds.SALE))
     }
-  }
+  }, [cart, setSaleId, open, dispatch])
+
+  const handleBack = useCallback(async (): Promise<void> => {
+    dispatch(close())
+  }, [dispatch, close])
 
   const footer = useMemo(() => {
-    return <Button onClick={handlePayment}>Lancer le payment</Button>
-  }, [cart])
+    return (
+      <>
+        <Button onClick={handlePayment}>Lancer le payment</Button>
+        <SecondaryButton
+          isError={isSaveError}
+          isLoading={isSaveLoading}
+          className={'mr-auto'}
+          onClick={handleBack}
+        >
+          Retour
+        </SecondaryButton>
+      </>
+    )
+  }, [cart, isSaveLoading, isSaveError, handlePayment, handleBack])
 
   return (
     <Modal className={'sm:max-w-2xl!'} id={ModalIds.SEARCH_CLIENT} footer={footer}>

@@ -50,14 +50,13 @@ export const salesExtendedApi = api.injectEndpoints({
       },
       transformResponse: (response: IResponse<ISimulation>) => response.data
     }),
-    sendReceipt: builder.mutation<ISimulation, string>({
+    sendReceipt: builder.mutation<void, string>({
       query: (saleId) => {
         return {
           url: `/sales/${saleId}/send-receipt`,
           method: 'POST'
         }
-      },
-      transformResponse: (response: IResponse<ISimulation>) => response.data
+      }
     })
   })
 })

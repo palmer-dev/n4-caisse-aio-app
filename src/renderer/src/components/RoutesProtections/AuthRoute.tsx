@@ -40,10 +40,10 @@ function AuthRoute(): JSX.Element {
   if (canAccess)
     return (
       <>
-        <Menu />
         <AuthModal />
         <ClientModal />
         <SaleModal />
+        <Menu />
         <Outlet />
       </>
     )

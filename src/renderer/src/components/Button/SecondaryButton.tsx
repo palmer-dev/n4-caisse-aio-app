@@ -25,10 +25,10 @@ const Button = ({
       className={`flex items-center justify-center px-4 py-2 font-semibold rounded-md transition-all
                   ${
                     isLoading || disabled
-                      ? 'bg-gray-400 cursor-not-allowed text-white'
+                      ? 'bg-gray-400/20 cursor-not-allowed text-white'
                       : isError
                         ? 'bg-red-500 hover:bg-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800'
-                        : 'bg-yellow-500 hover:bg-yellow-600 text-white dark:bg-yellow-700 dark:hover:bg-yellow-800'
+                        : 'bg-gray-500 hover:bg-gray-600 text-white dark:bg-gray-700 dark:hover:bg-gray-800'
                   }
                   ${className}`}
       {...props}

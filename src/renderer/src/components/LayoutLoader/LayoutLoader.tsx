@@ -1,7 +1,7 @@
 const LayoutLoader = (): JSX.Element => {
   return (
     <div>
-      <h2>Je charge</h2>
+      <h2>Loading</h2>
     </div>
   )
 }
